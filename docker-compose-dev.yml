@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  sale:
+    build:
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    container_name: "telemetry-sale"
+    restart: on-failure
+    ports:
+      - "8325:8325" # Проброс порта
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    external: true
+    name: web-external-network
